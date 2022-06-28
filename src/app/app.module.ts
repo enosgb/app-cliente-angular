@@ -6,19 +6,26 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxSoapModule } from 'ngx-soap';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     NgSelectModule,
+    NgxPaginationModule,
+    HttpClientModule,
+    NgxSoapModule,
   ],
-  providers: [],
+  providers: [NgxSoapModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

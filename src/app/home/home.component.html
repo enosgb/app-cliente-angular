@@ -1,7 +1,22 @@
 <p>home works!</p>
-<ng-select
-[items]="cars"
-bindLabel="name"
-bindValue="id"
-[(ngModel)]="selectedCar"
-></ng-select>
+
+<pagination-controls
+(pageChange)="pageSelected = $event"
+previousLabel="anterior"
+nextLabel="próximo"
+></pagination-controls>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Contries</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contry of contries | paginate : {itemsPerPage: 10, currentPage: pageSelected}">
+        <td>{{contry.sISOCode}}</td>
+        <td>{{contry.sName}}</td>
+      </tr>
+    </tbody>
+  </table>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Continent, Country } from '../models/contry';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -7,18 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  selectedCar: number;
+  contries: Country[];
+  pageSelected: number;
 
-  cars = [
-      { id: 1, name: 'Volvo' },
-      { id: 2, name: 'Saab' },
-      { id: 3, name: 'Opel' },
-      { id: 4, name: 'Audi' },
-  ];
-
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
+    this.dataService.clientState().subscribe((ready)=>{
+      if(ready){
+        this.loadGetContries();
+      }
+    })
+  }
+
+  loadGetContries(){
+    this.dataService.getContinent().subscribe(data=>{
+      this.contries = data;
+      console.log('final',this.contries);
+
+    })
   }
 
 }
